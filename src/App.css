@@ -1,0 +1,79 @@
+.header {
+  padding: 20px;
+}
+.search-icon {
+  border-right: none !important;
+  background-color: #fff !important;
+}
+.search-input {
+  border-left: none !important;
+  border-right: none !important;
+}
+.search-filter {
+  border-left: none !important;
+  background-color: #fff !important;
+}
+.btn-primary {
+  background: rgb(255, 215, 5);
+  color: rgb(0, 0, 0);
+  border: none !important;
+}
+.fixed-table {
+  width: 200px; /* Set a fixed width for the first table */
+  float: left;
+}
+
+.scrollable-table {
+  overflow-x: scroll;
+  border-left: none !important;
+  overflow-y: auto;
+}
+
+.scrollable-table table {
+  width: 1500px;
+}
+.sticky-column {
+  position: -webkit-sticky;
+  position: sticky;
+  left: 0;
+  background-color: white;
+  z-index: 1;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  gap: 20px;
+}
+.top {
+  height: 5px;
+  background-color: #f5bf00;
+  border-radius: 6px 0px 0px 0px;
+}
+.status-dropdwon {
+  background-color: #f5bf00 !important;
+  color: rgb(0, 0, 0) !important;
+}
+.sticky-column-r {
+  position: -webkit-sticky;
+  position: sticky;
+  left: 0;
+  background-color: white;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  gap: 20px;
+}
+.options-dropdown {
+  position: fixed !important;
+  left: 7% !important;
+  top: 18% !important;
+}
+
+.active > .page-link {
+  background-color: #f5bf00 !important;
+  color: rgb(0, 0, 0) !important;
+  border: 1px solid #f5bf00 !important;
+}
+.page-link {
+  color: rgb(0, 0, 0) !important;
+  border: 1px solid rgb(89, 89, 89) !important;
+}
