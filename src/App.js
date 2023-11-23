@@ -1,13 +1,12 @@
+import { BrowserRouter as Router } from "react-router-dom";
+import MyRoutes from "./setup/routes/myRoutes";
 import "./App.css";
-import { ScrollableTable } from "./components/ScalabeTable";
 
 function App() {
   return (
-    <>
-      <div className="container">
-        <ScrollableTable />
-      </div>
-    </>
+    <Router>
+      <MyRoutes />
+    </Router>
   );
 }
 

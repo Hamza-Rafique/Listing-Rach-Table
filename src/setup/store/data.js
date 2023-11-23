@@ -1,10 +1,10 @@
-import one from "../assets/compnayname/one.png";
-import two from "../assets/compnayname/two.png";
-import three from "../assets/compnayname/three.png";
-import four from "../assets/compnayname/four.png";
-import five from "../assets/compnayname/five.png";
-import six from "../assets/compnayname/six.png";
-import seven from "../assets/compnayname/seven.png";
+import one from "../../assets/compnayname/one.png";
+import two from "../../assets/compnayname/two.png";
+import three from "../../assets/compnayname/three.png";
+import four from "../../assets/compnayname/four.png";
+import five from "../../assets/compnayname/five.png";
+import six from "../../assets/compnayname/six.png";
+import seven from "../../assets/compnayname/seven.png";
 
 export const data = {
   staff: [

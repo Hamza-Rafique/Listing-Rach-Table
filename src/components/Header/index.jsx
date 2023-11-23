@@ -9,17 +9,19 @@ import {
 import logo from "../../assets/logo.png";
 import search from "../../assets/search.png";
 import filter from "../../assets/filter.png";
+import { useLocation } from "react-router-dom";
 
-const Header = ({ onFilter, onSearch }) => {
-  const handleSearch = (e) => {
-    const searchTerm = e.target.value;
-    onSearch(searchTerm);
-    console.log(searchTerm)
-  };
-  const handleFilter = (e) => {
-    const filterValue = e.target.value;
-    onFilter(filterValue);
-  };
+const Header = ({ value, onChange }) => {
+  // const handleSearch = (e) => {
+  //   const searchTerm = e.target.value;
+  //   onSearch(searchTerm);
+  //   console.log(searchTerm);
+  // };
+  // const handleFilter = (e) => {
+  //   const filterValue = e.target.value;
+  //   onFilter(filterValue);
+  // };
+  const location = useLocation();
   return (
     <div className="header">
       <Container>
@@ -30,35 +32,51 @@ const Header = ({ onFilter, onSearch }) => {
               style={{ marginLeft: "10px", fontSize: "18px", width: "300px" }}
               className=""
             >
-              <b>Manage Business</b>
+              <b>
+                {location.pathname === "/create-business"
+                  ? "Create Business"
+                  : "Manage Business"}{" "}
+              </b>
             </span>
-            <InputGroup>
-              <InputGroup.Text id="basic-addon1" className="search-icon">
-                <img src={search} alt="search" />
-              </InputGroup.Text>
+            {location.pathname === "/create-business" ? (
+              ""
+            ) : (
+              <InputGroup>
+                <InputGroup.Text id="basic-addon1" className="search-icon">
+                  <img src={search} alt="search" />
+                </InputGroup.Text>
 
-              <Form.Control
-                placeholder="Search"
-                aria-describedby="basic-addon1"
-                className="search-input"
-                onChange={handleSearch}
-              />
-              <InputGroup.Text id="basic-addon1" className="search-filter">
-                <img src={filter} alt="filter" />
-                {/* <select onChange={handleFilter} className="filter-select">
-                  <option value="">Select Filter</option>
-                  <option value="True">True</option>
-                  <option value="False">False</option>
-                </select> */}
-              </InputGroup.Text>
-            </InputGroup>
+                <Form.Control
+                  placeholder="Search"
+                  aria-describedby="basic-addon1"
+                  className="search-input"
+                  onChange={onChange}
+                  value={value}
+                />
+                <InputGroup.Text id="basic-addon1" className="search-filter">
+                  <img src={filter} alt="filter" />
+                  {/* <select onChange={handleFilter} className="filter-select">
+                    <option value="">Select Filter</option>
+                    <option value="True">True</option>
+                    <option value="False">False</option>
+                  </select> */}
+                </InputGroup.Text>
+              </InputGroup>
+            )}
           </div>
 
           <div>
-            <Button style={{ background: "#FFD705", color: "#000" }}>
-              <i className="fas fa-plus" style={{ marginRight: "5px" }}></i>+
-              Add Business
-            </Button>
+            {location.pathname === "/create-business" ? (
+              ""
+            ) : (
+              <Button
+                style={{ background: "#FFD705", color: "#000" }}
+                href={`/create-business`}
+              >
+                <i className="fas fa-plus" style={{ marginRight: "5px" }}></i>
+                Add Business
+              </Button>
+            )}
           </div>
         </div>
       </Container>
