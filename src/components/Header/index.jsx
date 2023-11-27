@@ -11,11 +11,11 @@ import search from "../../assets/search.png";
 import filter from "../../assets/filter.png";
 import { useLocation } from "react-router-dom";
 
-const Header = ({ value, onChange }) => {
+const Header = ({ value, handleSearchChange }) => {
   // const handleSearch = (e) => {
+  //   console.log(e)
   //   const searchTerm = e.target.value;
-  //   onSearch(searchTerm);
-  //   console.log(searchTerm);
+  //   handleSearchChange(searchTerm)
   // };
   // const handleFilter = (e) => {
   //   const filterValue = e.target.value;
@@ -50,8 +50,8 @@ const Header = ({ value, onChange }) => {
                   placeholder="Search"
                   aria-describedby="basic-addon1"
                   className="search-input"
-                  onChange={onChange}
-                  value={value}
+                  onChange={handleSearchChange}
+                  // value={value}
                 />
                 <InputGroup.Text id="basic-addon1" className="search-filter">
                   <img src={filter} alt="filter" />

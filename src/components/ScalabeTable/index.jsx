@@ -21,9 +21,7 @@ const itemsPerPage = 5;
 const ScrollableTable = () => {
   const [staff, setStaff] = useState(staffdata);
   const [selectedValues, setSelectedValues] = useState({});
-  const [showDropdown, setShowDropdown] = useState(
-    new Array(staff[0].columnValue.length).fill(false)
-  );
+  const [showDropdown, setShowDropdown] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [showViewModal, setShowViewModal] = useState(false);
   const [selectedRecord, setSelectedRecord] = useState(null);
@@ -33,12 +31,19 @@ const ScrollableTable = () => {
   const [filteredData, setFilteredData] = useState(staff);
 
   const handleSearchChange = (event) => {
+    console.log(event);
+    const searchTerm = event.target.value.toLowerCase();
     setSearchTerm(event.target.value);
-    const filteredStaff = staff[0].columnValue.filter((row) => {
-      const searchString =
-        row.values.toLowerCase() + " " + row.columnName.toLowerCase();
-      return searchString.includes(searchTerm.toLowerCase());
+    const filteredStaff = staff[0]?.columnValue?.filter((row) => {
+      const rowValues = staff?.map((column) =>
+        column?.columnValue[row.values]?.values?.toLowerCase()
+      );
+
+      return rowValues.some(
+        (value) => value?.includes(searchTerm) || value?.includes(searchTerm)
+      );
     });
+
     setFilteredData(filteredStaff);
   };
 
@@ -169,7 +174,7 @@ const ScrollableTable = () => {
 
   return (
     <>
-      <Header value={searchTerm} onChange={handleSearchChange} />
+      <Header value={searchTerm} handleSearchChange={handleSearchChange} />
       <div className="scrollable-table">
         <Table bordered hover responsive>
           <thead>
@@ -191,7 +196,7 @@ const ScrollableTable = () => {
                       src={Add}
                       alt="Add"
                       onClick={() => toggleSticky(index)}
-                      style={{marginRight:'20px'}}
+                      style={{ marginRight: "20px" }}
                     />
                   )}
 
@@ -233,7 +238,7 @@ const ScrollableTable = () => {
                           src={Options}
                           alt="Options"
                           onClick={() => toggleDropdown(rowIndex)}
-                          style={{marginRight:'20px'}}
+                          style={{ marginRight: "20px" }}
                         />
                       )}
 
