@@ -9,7 +9,7 @@ import {
 import logo from "../../assets/logo.png";
 import search from "../../assets/search.png";
 import filter from "../../assets/filter.png";
-import { useLocation } from "react-router-dom";
+// import { useLocation } from "react-router-dom";
 
 const Header = ({ value, handleSearchChange }) => {
   // const handleSearch = (e) => {
@@ -21,7 +21,8 @@ const Header = ({ value, handleSearchChange }) => {
   //   const filterValue = e.target.value;
   //   onFilter(filterValue);
   // };
-  const location = useLocation();
+  const location = "Manage Business";
+
   return (
     <div className="header">
       <Container>
@@ -33,12 +34,12 @@ const Header = ({ value, handleSearchChange }) => {
               className=""
             >
               <b>
-                {location.pathname === "/create-business"
+                {location === "/create-business"
                   ? "Create Business"
                   : "Manage Business"}{" "}
               </b>
             </span>
-            {location.pathname === "/create-business" ? (
+            {location === "/create-business" ? (
               ""
             ) : (
               <InputGroup>
