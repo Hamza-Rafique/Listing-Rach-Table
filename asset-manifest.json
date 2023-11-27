@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/Hamza-Rafique/Listing-Rach-Table/static/css/main.67795162.css",
+    "main.js": "/Hamza-Rafique/Listing-Rach-Table/static/js/main.25fc77d0.js",
+    "static/js/787.b18f6993.chunk.js": "/Hamza-Rafique/Listing-Rach-Table/static/js/787.b18f6993.chunk.js",
+    "index.html": "/Hamza-Rafique/Listing-Rach-Table/index.html",
+    "main.67795162.css.map": "/Hamza-Rafique/Listing-Rach-Table/static/css/main.67795162.css.map",
+    "main.25fc77d0.js.map": "/Hamza-Rafique/Listing-Rach-Table/static/js/main.25fc77d0.js.map",
+    "787.b18f6993.chunk.js.map": "/Hamza-Rafique/Listing-Rach-Table/static/js/787.b18f6993.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.67795162.css",
+    "static/js/main.25fc77d0.js"
+  ]
+}
