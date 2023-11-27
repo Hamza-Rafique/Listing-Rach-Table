@@ -51,17 +51,24 @@ const ScrollableTable = () => {
     }));
   };
 
-  const toggleDropdown = (rowIndex) => {
-    setShowDropdown((prevShowDropdown) => {
-      const newShowDropdown = [...prevShowDropdown];
-      newShowDropdown[rowIndex] = !newShowDropdown[rowIndex];
-      return newShowDropdown;
-    });
+  const toggleDropdown = () => {
+    setShowDropdown(true);
   };
 
   const toggleSticky = (columnIndex) => {
     const updatedStaff = [...staff];
     updatedStaff[columnIndex].isSticky = !updatedStaff[columnIndex].isSticky;
+
+    updatedStaff.sort((a, b) => {
+      if (a.isSticky && !b.isSticky) {
+        return -1;
+      } else if (!a.isSticky && b.isSticky) {
+        return 1;
+      } else {
+        return a.position - b.position;
+      }
+    });
+
     setStaff(updatedStaff);
   };
 
@@ -90,6 +97,7 @@ const ScrollableTable = () => {
             onSelect={(selectedValue) =>
               handleDropdownChange(column.columnName, rowIndex, selectedValue)
             }
+            className="true-false-dropdown"
           >
             <Dropdown.Toggle className="status-dropdwon" id="dropdown-basic">
               {selectedValues[`${column.columnName}_${rowIndex}`] ||
@@ -148,27 +156,24 @@ const ScrollableTable = () => {
     setSelectedRecord(record);
     setShowViewModal(true);
   };
-  const calculateLeftValue = (colIndex) => {
-    switch (colIndex) {
-      case 0:
-        return "1px";
-      case 1:
-        return "277px";
-      case 2:
-        return "563px";
-      case 3:
-        return "663px";
 
-      default:
-        return "0px";
+  const calculateAdjustedLeftValue = (colIndex) => {
+    let leftValue = 0;
+
+    for (let i = 0; i < colIndex; i++) {
+      leftValue += staff[i].isSticky ? 260 : 200;
     }
+
+    return `${leftValue}px`;
   };
+
   return (
     <>
       <Header value={searchTerm} onChange={handleSearchChange} />
       <div className="scrollable-table">
         <Table bordered hover responsive>
           <thead>
+            <div className="top"></div>
             <tr>
               {headers.map((header, index) => (
                 <th
@@ -177,7 +182,7 @@ const ScrollableTable = () => {
                   style={{
                     width: "300px",
                     left: staff[index].isSticky
-                      ? calculateLeftValue(index)
+                      ? calculateAdjustedLeftValue(index)
                       : "",
                   }}
                 >
@@ -186,6 +191,7 @@ const ScrollableTable = () => {
                       src={Add}
                       alt="Add"
                       onClick={() => toggleSticky(index)}
+                      style={{marginRight:'20px'}}
                     />
                   )}
 
@@ -218,7 +224,7 @@ const ScrollableTable = () => {
                       style={{
                         width: "300px",
                         left: staff[columnIndex].isSticky
-                          ? calculateLeftValue(columnIndex)
+                          ? calculateAdjustedLeftValue(columnIndex)
                           : "",
                       }}
                     >
@@ -227,10 +233,26 @@ const ScrollableTable = () => {
                           src={Options}
                           alt="Options"
                           onClick={() => toggleDropdown(rowIndex)}
+                          style={{marginRight:'20px'}}
                         />
                       )}
 
                       {renderCellValue(column, rowIndex)}
+                      <Dropdown
+                        show={showDropdown}
+                        onClick={() => setShowDropdown(!showDropdown)}
+                        className="options-dropdown"
+                      >
+                        <Dropdown.Menu>
+                          <Dropdown.Item eventKey="profile">
+                            Profile
+                          </Dropdown.Item>
+                          <Dropdown.Item eventKey="department">
+                            Department
+                          </Dropdown.Item>
+                          <Dropdown.Item eventKey="user">User</Dropdown.Item>
+                        </Dropdown.Menu>
+                      </Dropdown>
                     </td>
                   ))}
                   <td className="icon-list">
@@ -250,19 +272,6 @@ const ScrollableTable = () => {
                       onClick={() => handleDelete(rowIndex)}
                     />
                   </td>
-                  <Dropdown
-                    show={showDropdown[rowIndex]}
-                    onClick={() => setShowDropdown(!showDropdown)}
-                    className="options-dropdown"
-                  >
-                    <Dropdown.Menu>
-                      <Dropdown.Item eventKey="profile">Profile</Dropdown.Item>
-                      <Dropdown.Item eventKey="department">
-                        Department
-                      </Dropdown.Item>
-                      <Dropdown.Item eventKey="user">User</Dropdown.Item>
-                    </Dropdown.Menu>
-                  </Dropdown>
                 </tr>
               ))}
             <ViewModal

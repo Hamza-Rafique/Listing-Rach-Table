@@ -83,7 +83,10 @@
 .options-dropdown {
   position: fixed !important;
   left: 7% !important;
-  top: 18% !important;
+  top: 26% !important;
+}
+.dropdown-item:active {
+  background-color: #f5bf00 !important;
 }
 
 .active > .page-link {
@@ -194,4 +197,7 @@
 }
 .cancel-button {
   padding: 10px 55px !important;
+}
+.true-false-dropdown {
+  position: none !important;
 }
