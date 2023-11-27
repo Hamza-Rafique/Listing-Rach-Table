@@ -2,6 +2,7 @@
   "name": "table-plexaar",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://github.com/Hamza-Rafique/Listing-Rach-Table",
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
@@ -52,6 +53,5 @@
   },
   "devDependencies": {
     "gh-pages": "^6.1.0"
-  },
-  "homepage": "https://github.com/Hamza-Rafique/Listing-Rach-Table"
+  }
 }
